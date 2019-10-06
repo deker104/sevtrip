@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+Отзывы - SevTrip
+{% endblock %}
+{% block body %}
+    <ul>
+    {% for suggestion in suggestions %}
+        <li>{{ suggestion.text|safe }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

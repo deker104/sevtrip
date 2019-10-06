@@ -1,0 +1,71 @@
+{% load static %}
+{% load rest_framework %}
+  <html lang="ru">
+	<head>
+		<meta charset="utf-8">
+
+		<script type="text/javascript" src="{% static 'js/jquery-3.4.1.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/axios.min.js' %}"></script>
+
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+		<script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+
+		<link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}">
+		<link rel="shortcut icon" href="{% static 'images/icon.png' %}" type="image/png">
+    <script type="text/javascript" src="{% static 'js/editor.js' %}"></script>
+		<title>Отзывы и предложения - ТрипТОрч</title>
+		<link href="{% static 'css/icon.css' %}" rel="stylesheet">
+    	<style type="text/css">.ck{text-align: left;}</style>
+    </head>
+    <body>
+ <nav>
+    <div class="nav-wrapper blue">
+      <div class="col s12">
+        <a href="{% url 'route-list' %}" class="breadcrumb">Главная</a>
+        <a href="#!" class="breadcrumb">Предложения</a>
+      </div>
+    </div>
+  </nav>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></i></a>
+<duv>
+    	<textarea class="ckeditor"></textarea>
+    	<p>
+    	<div style="text-align: center;">
+    	<button class="btn waves-effect waves-light blue" id="send" style="align: center;">Отправить<i class="material-icons right">send</i>
+  </button>
+</div></p>
+    	<script type="text/javascript">
+			ClassicEditor
+			.create($("textarea.ckeditor")[0])
+			.catch(error=>{
+			console.error( error );
+			});
+			$("button#send").click(function(){
+				data = $(".ck-editor__editable")[0].innerText.replace(/\s/g, "");
+				if(data)$.ajax({
+					url: "{% url 'suggestion-list' %}",
+					dataType: "json",
+					method: "POST",
+					success: function(data)
+					{
+						$("duv")[0].innerHTML = "Спасибо, за предложение";
+					},
+					error: function()
+					{
+						alert("Error");
+					},
+					data:{
+						text: $(".ck-editor__editable")[0].innerHTML
+					}
+				})
+				else
+				alert("Не заполнено поле комментария");
+			})
+		</script>
+	</duv>
+	</body>
+</html>
