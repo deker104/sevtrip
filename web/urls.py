@@ -1,8 +1,8 @@
 from rest_framework import routers
 
-from web.views import SuggestionViewSet, RouteViewSet
+from web.views import SuggestionViewSet, AnketaViewSet
 
 router = routers.DefaultRouter()
 router.register('suggestion', SuggestionViewSet)
-router.register('', RouteViewSet, basename='route')
+router.register('', AnketaViewSet, basename='anketa')
 urlpatterns = router.urls

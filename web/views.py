@@ -9,15 +9,32 @@ from api.serializers import RouteSerializer, SuggestionSerializer, AnketaTestSer
 from api.models import Route, Suggestion, AnketaTest
 
 
-class RouteViewSet(viewsets.GenericViewSet):
+class AnketaViewSet(viewsets.GenericViewSet):
     def list(self, request):
         return render(request, 'index.html')
 
     def create(self, request):
         serializer = AnketaTestSerializer(data=request.POST)
         if serializer.is_valid():
-            serializer.save()
-            return Response({'html': '<h1>success</h1>'})
+            serializer = serializer.data
+            age = serializer['age']
+            time = serializer['Time']
+            child = serializer['child']
+            invalid = serializer['invalid']
+            invalid2 = serializer['invalid2']
+            personal = serializer['personal']
+            phys_ready = serializer['physReady']
+            if invalid2 or invalid or age >= 60 or phys_ready == 1 or time == 1:
+                difficulty = 1
+            elif age >= 40 or phys_ready == 2 or child == 1 or time == 2:
+                difficulty = 2
+            else:
+                difficulty = 3
+            routes = Route.objects.all().filter(difficulty__lte=difficulty).order_by('-difficulty', '-id')
+            routes = RouteSerializer(routes, many=True).data
+            return Response({'html': render_to_string('route.html', context={
+                'routes': routes
+            })})
         return Response({'html': '<h1>fail</h1>'})
 
     def get_permissions(self):

@@ -12,8 +12,6 @@ class Route(models.Model):
     name = models.CharField('название', max_length=100)
     description = models.TextField('описание', max_length=1000)
     difficulty = models.IntegerField('сложность', choices=DIFFICULTY_CHOICES)
-    duration = models.IntegerField('длительность')
-    image = models.FileField('изображение', default=b'')
 
 
 class Suggestion(models.Model):
