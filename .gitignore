@@ -126,4 +126,3 @@ dmypy.json
 
 # Pycharm
 .idea/
-db.sqlite3
