@@ -14,19 +14,21 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}">
 		<link rel="shortcut icon" href="{% static 'images/icon.png' %}" type="image/png">
     <script type="text/javascript" src="{% static 'js/editor.js' %}"></script>
-		<title>Отзывы и предложения - ТрипТОрч</title>
+		<title>Отзывы - SevTrip</title>
 		<link href="{% static 'css/icon.css' %}" rel="stylesheet">
     	<style type="text/css">.ck{text-align: left;}</style>
     </head>
     <body>
- <nav>
-    <div class="nav-wrapper blue">
-      <div class="col s12">
-        <a href="{% url 'anketa-list' %}" class="breadcrumb">Главная</a>
-        <a href="#!" class="breadcrumb">Предложения</a>
+<nav>
+    <div class="nav-wrapper indigo darken-3">
+      <div class="z-depth-2">
+        <div class="z-depth-4">
+          <a href="{% url 'anketa-list' %}"><center><img width=60; height=60; src="{% static 'images/toTheHeader.png' %}"></center></a>
+          </div>
       </div>
     </div>
   </nav>
+<br>
       <ul id="nav-mobile" class="sidenav">
         <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></a></li>
       </ul>

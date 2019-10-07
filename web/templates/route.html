@@ -1,5 +1,39 @@
-<ul>
+{% load static %}
+<h2 class="center">Вам подходят маршруты:</h2><br>
 {% for route in routes %}
-    <li>{{ route.name }}: {{ route.description }}</li>
+    <div class="row">
+        <div class="col s12 m3"></div>
+        <div class="col s12 m6">
+            {% if route.difficulty == 3 %}
+                <div class="card red darken-1">
+            {% elif route.difficulty == 2 %}
+                <div class="card blue-grey darken-1">
+            {% elif route.difficulty == 1 %}
+                <div class="card green darken-1">
+            {% endif %}
+                <div class="card-content white-text center-align">
+                    <span class="card-title white-text">{{ route.name }}</span>
+                    <p>{{ route.description }}</p>
+                    <br>
+                    <img alt="" id="img{{ route.id }}" class="materialboxed" width="100%" src="{{ route.image }}">
+                    <div id="map{{ route.id }}" hidden>{{ route.html|safe }}</div>
+                </div>
+                <div class="card-action center-align">
+                    <a id="btn-map{{ route.id }}" href="#!" class="white-text" onclick="
+$('#img{{ route.id }}').hide();
+$('#map{{ route.id }}').show();
+$('#btn-map{{ route.id }}').hide();
+$('#btn-img{{ route.id }}').show();
+">Показать карту</a>
+                    <a id="btn-img{{ route.id }}" href="#!" class="white-text" onclick="
+$('#img{{ route.id }}').show();
+$('#map{{ route.id }}').hide();
+$('#btn-map{{ route.id }}').show();
+$('#btn-img{{ route.id }}').hide();
+" hidden>Показать картинку</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m3"></div>
+    </div>
 {% endfor %}
-</ul>

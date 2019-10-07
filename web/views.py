@@ -17,7 +17,7 @@ class AnketaViewSet(viewsets.GenericViewSet):
         serializer = AnketaTestSerializer(data=request.POST)
         if serializer.is_valid():
             serializer = serializer.data
-            age = serializer['age']
+            age = int(serializer['age'])
             time = serializer['Time']
             child = serializer['child']
             invalid = serializer['invalid']
@@ -33,7 +33,8 @@ class AnketaViewSet(viewsets.GenericViewSet):
             routes = Route.objects.all().filter(difficulty__lte=difficulty).order_by('-difficulty', '-id')
             routes = RouteSerializer(routes, many=True).data
             return Response({'html': render_to_string('route.html', context={
-                'routes': routes
+                'routes': routes,
+                'difficulty': difficulty
             })})
         return Response({'html': '<h1>fail</h1>'})
 

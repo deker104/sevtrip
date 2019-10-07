@@ -20,9 +20,9 @@
         <meta name="keyword" content="баобаб">
         <meta name="keyword" content="SevTrip">
         <meta name="description" content="Подбор пеших маршрутов для туризма.">
+        <meta name="description" content="SevTrip">
         <meta name="content-type" content="text/html" charset="utf-8">
         <meta http-equiv="content-language" content="ru">
-        <meta http-equiv="refresh" content="30">
         <meta name="robots" content="index, nofollow">
         <meta name="author" content="Андрей Сурчаков">
         <meta name="copyright" content="Все права принадлежат Сурчакову Андрею">
@@ -31,6 +31,15 @@
     <script type="text/javascript">
       SevasTrip1 = "ngkasbhgbjsdjhbg";
     </script>
+        <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+ym(55647583, "init", {
+clickmap:true,
+trackLinks:true,
+accurateTrackBounce:true
+});</script>
 
 		<script type="text/javascript" src="{% static 'js/jquery-3.4.1.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/axios.min.js' %}"></script>
@@ -67,7 +76,7 @@
     <div class="nav-wrapper indigo darken-3">
       <div class="z-depth-2">
         <div class="z-depth-4">
-          <a href="{% url 'anketa-list' %}"><center><img width=60; height=60; src="{% static 'images/toTheHeader.png' %}"></center></a>
+          <a href="{% url 'anketa-list' %}"><center><img class="materialboxed" alt="" width=60; height=60; src="{% static 'images/toTheHeader.png' %}"></center></a>
           </div>
       </div>
     </div>
@@ -77,7 +86,6 @@
         <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></i></a>
-      <br> <br>
 <script type="text/javascript">
       child_check = false;
       invalid_check = false;
@@ -105,7 +113,7 @@
         <div class="card-reveal">
       <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
       <p>Зелёные маршруты - самые простые из доступных. Их прохождение не отнимет у вас большого количества времени и сил. По этим маршрутам сможет пройти абсолютно любой человек(группа): путешествуя по таким маршрутам с детьми или пожилыми людьми, можете не переживать, что они не смогут его преодолеть.
-<br><br>
+      </p><p>
 К этой категории относятся по большей части городские маршруты, в том числе маршруты Екатерининский сквер - Артбухта и Прогулка по центру Севастополя.</p>
     </div>
       </div>
@@ -125,7 +133,9 @@
     </div>
         <div class="card-reveal">
       <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-      <p>АА</p>
+            <p>К маршрутам синей категории относятся маршруты средней сложности. Хотя большинство людей сможет преодолеть их без особых проблем, подходят они не каждому. Маршруты синей категории проходят по побережью Черного моря и горам Крыма. Они идеально подойдут для тех, кто любит шум волн или умопомрачительные виды.</p>
+
+<p>К этой категории относятся такие маршруты, как Передовое - Терновский пруд или Солнечная тропа</p>
     </div>
       </div>
     </div>
@@ -143,16 +153,22 @@
     </div>
         <div class="card-reveal">
       <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-      <p>А=А</p>
+            <p>Красные маршруты - самые сложные из представленных. Пройти такой маршрут-настоящее испытание, преодолеть которое не смогут группы с детьми или пожилыми людьми. Будьте внимательны: некоторые маршруты этой категории требуют специальной подготовки.</p>
+            <p>Но, если вы преодолеете все трудности, вы сможете насладиться завораживающими видами с самых высоких гор Крыма. К этой категории относятся такие маршруты, как Перевал Байдарские ворота или Урочище горный ключ - Любимовка</p>
     </div>
       </div>
     </div>
   </div>
 
-<hr>
 
-  <!-- Анкета и составляющие -->  
-<a onclick="$('#anketa').show()" href="#!"><h1><font face="comic sans ms"><center>Подбор маршрутов</center></font></h1></a>
+  <!-- Анкета и составляющие -->
+ <div class="row center" id="button_search">
+     <div class="col s12">
+             <button style="height: 120px" onclick="$('#anketa').show()" href="#!" class="btn btn-large blue-grey darken-1">
+                 <p class="white-text" style="font-size: 30px">Подбор маршрутов</p>
+             </button>
+     </div>
+ </div>
 
 
 
@@ -229,8 +245,7 @@
   <br>
 
 </div>
-
- <!-- Анкета и составляющие -->  
+ <!-- Анкета и составляющие -->
  <div style="text-align: center; position: inherit; left: 0; bottom: 0; right: 0;  margin: 0">  
 <footer class="page-footer indigo darken-3"> 
     <div class="container">
@@ -253,23 +268,23 @@
         </div>
         <div class="col l3 s12">
           <img src="{% static 'images/icon.png' %}" style="width: 120px; height: 120px;">
-          <ul>
-            <li><a class="white-text" target="_blank" href="https://vk.com/circledev">Андрей</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/mpipi">Мария</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/id72272281">Сергей</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/monahirek666">Ирек</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/dshindov">Даниил</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/a.bliznichenko">Алексей</a></li>
-             </ul>
-             <ul>
-            <li><a class="white-text" target="_blank" href="https://vk.com/id242011864">Константин</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/krishtels">Карина</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/zavyazkin2013">Александр</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/kolyashvirev">Николай</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/ivan_krylov01">Иван</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/id313846313">Эльдар</a></li>
-            <li><a class="white-text" target="_blank" href="https://vk.com/schyolokov10">Александр</a></li>
-          </ul>
+{#          <ul>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/circledev">Андрей</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/mpipi">Мария</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/id72272281">Сергей</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/monahirek666">Ирек</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/dshindov">Даниил</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/a.bliznichenko">Алексей</a></li>#}
+{#             </ul>#}
+{#             <ul>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/id242011864">Константин</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/krishtels">Карина</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/zavyazkin2013">Александр</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/kolyashvirev">Николай</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/ivan_krylov01">Иван</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/id313846313">Эльдар</a></li>#}
+{#            <li><a class="white-text" target="_blank" href="https://vk.com/schyolokov10">Александр</a></li>#}
+{#          </ul>#}
         </div>
       </div>
     </div>

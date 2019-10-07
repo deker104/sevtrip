@@ -12,6 +12,8 @@ class Route(models.Model):
     name = models.CharField('название', max_length=100)
     description = models.TextField('описание', max_length=1000)
     difficulty = models.IntegerField('сложность', choices=DIFFICULTY_CHOICES)
+    html = models.TextField('карта', max_length=10000, blank=True)
+    image = models.FileField('изображение', default='')
 
 
 class Suggestion(models.Model):
@@ -23,6 +25,6 @@ class AnketaTest(models.Model):
     invalid = models.BooleanField()
     invalid2 = models.BooleanField()
     age = models.IntegerField()
-    personal = models.CharField(max_length=20, null=True)
-    physReady = models.CharField(max_length=20, null=True)
-    Time = models.CharField(max_length=20, null=True)
+    personal = models.CharField(max_length=100, blank=True)
+    physReady = models.IntegerField(null=True)
+    Time = models.IntegerField(null=True)
