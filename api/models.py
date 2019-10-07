@@ -25,6 +25,6 @@ class AnketaTest(models.Model):
     invalid = models.BooleanField()
     invalid2 = models.BooleanField()
     age = models.IntegerField()
-    personal = models.CharField(max_length=100, blank=True)
+    personal = models.CharField(max_length=100, default='')
     physReady = models.IntegerField(null=True)
     Time = models.IntegerField(null=True)
