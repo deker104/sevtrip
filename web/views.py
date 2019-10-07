@@ -22,7 +22,7 @@ class AnketaViewSet(viewsets.GenericViewSet):
             child = serializer['child']
             invalid = serializer['invalid']
             invalid2 = serializer['invalid2']
-            personal = serializer['personal']
+            personal = serializer.get('personal')
             phys_ready = serializer['physReady']
             if invalid2 or invalid or age >= 60 or phys_ready == 1 or time == 1:
                 difficulty = 1

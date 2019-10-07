@@ -17,6 +17,7 @@ $(document).ready(function(){
 			Time: $("select#theTime")[0].text == "Не выбрано" ? null : $("select#theTime")[0].value,
 
 		};
+		console.log(data);
 		 $.ajax({
 			 data: data,
 			 url: "/",
