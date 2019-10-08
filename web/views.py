@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.db.models import Q
 
 from api.serializers import RouteSerializer, SuggestionSerializer, AnketaTestSerializer
 from api.models import Route, Suggestion, AnketaTest
@@ -22,21 +23,47 @@ class AnketaViewSet(viewsets.GenericViewSet):
             child = serializer['child']
             invalid = serializer['invalid']
             invalid2 = serializer['invalid2']
-            personal = serializer.get('personal')
+            personal1 = serializer['personal1']
+            personal2 = serializer['personal2']
+            personal3 = serializer['personal3']
+            personal4 = serializer['personal4']
             phys_ready = serializer['physReady']
-            if invalid2 or invalid or age >= 60 or phys_ready == 1 or time == 1:
-                difficulty = 1
-            elif age >= 40 or phys_ready == 2 or child == 1 or time == 2:
-                difficulty = 2
+            if invalid2 or invalid or age >= 60 or phys_ready == 1 or age <= 10:
+                lte = 1
+            elif age >= 40 or phys_ready == 2 or child == 1:
+                lte = 2
             else:
-                difficulty = 3
-            routes = Route.objects.all().filter(difficulty__lte=difficulty).order_by('-difficulty', '-id')
+                lte = 3
+            if time == 1:
+                eq = [1]
+            elif time == 2:
+                eq = [2]
+            elif time == 3:
+                eq = [3]
+            else:
+                eq = [1, 2, 3]
+            routes_all = Route.objects.all().filter(difficulty__lte=lte, difficulty__in=eq)
+            routes = Route.objects.none()
+            if personal1:
+                routes = routes | routes_all.filter(personal1=True)
+            if personal2:
+                routes = routes | routes_all.filter(personal2=True)
+            if personal3:
+                routes = routes | routes_all.filter(personal3=True)
+            if personal4:
+                routes = routes | routes_all.filter(personal4=True)
             routes = RouteSerializer(routes, many=True).data
             return Response({'html': render_to_string('route.html', context={
-                'routes': routes,
-                'difficulty': difficulty
+                'routes': routes
             })})
         return Response({'html': '<h1>fail</h1>'})
+
+    def retrieve(self, request, pk):
+        route = Route.objects.get(pk=pk)
+        serializer = RouteSerializer(route).data
+        return render(request, 'route-detail.html', {
+            'route': serializer
+        })
 
     def get_permissions(self):
         return [AllowAny()]

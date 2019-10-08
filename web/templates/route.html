@@ -1,4 +1,5 @@
 {% load static %}
+{% if routes %}
 <h2 class="center">Вам подходят маршруты:</h2><br>
 {% for route in routes %}
     <div class="row">
@@ -16,7 +17,9 @@
                     <p>{{ route.description }}</p>
                     <br>
                     <img alt="" id="img{{ route.id }}" class="materialboxed" width="100%" src="{{ route.image }}">
-                    <div id="map{{ route.id }}" hidden>{{ route.html|safe }}</div>
+                    <div id="map{{ route.id }}" hidden>
+                        <iframe src="{% url 'anketa-detail' pk=route.id %}" height="520" width="520"></iframe>
+                    </div>
                 </div>
                 <div class="card-action center-align">
                     <a id="btn-map{{ route.id }}" href="#!" class="white-text" onclick="
@@ -37,3 +40,6 @@ $('#btn-img{{ route.id }}').hide();
         <div class="col s12 m3"></div>
     </div>
 {% endfor %}
+{% else %}
+<h3 class="grey-text center-align">Маршруты не найдены</h3><br>
+{% endif %}
