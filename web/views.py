@@ -37,23 +37,26 @@ class AnketaViewSet(viewsets.GenericViewSet):
             if time == 1:
                 eq = [1]
             elif time == 2:
-                eq = [2]
+                eq = [1, 2]
             elif time == 3:
                 eq = [3]
             else:
                 eq = [1, 2, 3]
-            routes_all = Route.objects.all().filter(difficulty__lte=lte, difficulty__in=eq)
-            routes = Route.objects.none()
+            routes_all = Route.objects.filter(difficulty__lte=lte, difficulty__in=eq)
+            routes = Q()
             if personal1:
-                routes = routes | routes_all.filter(personal1=True)
+                routes = routes | Q(personal1=True)
+                print('горы')
             if personal2:
-                routes = routes | routes_all.filter(personal2=True)
+                routes = routes | Q(personal2=True)
+                print('море')
             if personal3:
-                routes = routes | routes_all.filter(personal3=True)
+                routes = routes | Q(personal3=True)
+                print('город')
             if personal4:
-                routes = routes | routes_all.filter(personal4=True)
-            if not personal1 and not personal2 and not personal3 and not personal4:
-                routes = routes_all
+                routes = routes | Q(personal4=True)
+                print('лес')
+            routes = routes_all.filter(routes)
             routes = routes.order_by('-difficulty', '-id')
             routes = RouteSerializer(routes, many=True).data
             return Response({'html': render_to_string('route.html', context={
