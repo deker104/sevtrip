@@ -52,6 +52,8 @@ class AnketaViewSet(viewsets.GenericViewSet):
                 routes = routes | routes_all.filter(personal3=True)
             if personal4:
                 routes = routes | routes_all.filter(personal4=True)
+            if not personal1 and not personal2 and not personal3 and not personal4:
+                routes = routes_all
             routes = RouteSerializer(routes, many=True).data
             return Response({'html': render_to_string('route.html', context={
                 'routes': routes
