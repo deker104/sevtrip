@@ -14,10 +14,10 @@ class Route(models.Model):
     difficulty = models.IntegerField('сложность', choices=DIFFICULTY_CHOICES)
     html = models.TextField('карта', max_length=10000, blank=True)
     image = models.FileField('изображение', default='')
-    personal1 = models.BooleanField('горы')
-    personal2 = models.BooleanField('море')
-    personal3 = models.BooleanField('город')
-    personal4 = models.BooleanField('лес')
+    personal1 = models.BooleanField('горы', null=True)
+    personal2 = models.BooleanField('море', null=True)
+    personal3 = models.BooleanField('город', null=True)
+    personal4 = models.BooleanField('лес', null=True)
 
 
 class Suggestion(models.Model):
@@ -29,9 +29,9 @@ class AnketaTest(models.Model):
     invalid = models.BooleanField()
     invalid2 = models.BooleanField()
     age = models.IntegerField()
-    personal1 = models.BooleanField()
-    personal2 = models.BooleanField()
-    personal3 = models.BooleanField()
-    personal4 = models.BooleanField()
+    personal1 = models.BooleanField(null=True)
+    personal2 = models.BooleanField(null=True)
+    personal3 = models.BooleanField(null=True)
+    personal4 = models.BooleanField(null=True)
     physReady = models.IntegerField(null=True)
     Time = models.IntegerField(null=True)
