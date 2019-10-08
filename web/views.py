@@ -28,7 +28,7 @@ class AnketaViewSet(viewsets.GenericViewSet):
             personal3 = serializer['personal3']
             personal4 = serializer['personal4']
             phys_ready = serializer['physReady']
-            if invalid2 or invalid or age >= 60 or phys_ready == 1 or age <= 10:
+            if invalid2 or invalid or age >= 60 or phys_ready == 1 or 0 < age <= 10:
                 lte = 1
             elif age >= 40 or phys_ready == 2 or child == 1:
                 lte = 2
