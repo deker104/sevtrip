@@ -19,16 +19,22 @@ $(document).ready(function(){
 			Time: $("select#theTime")[0].text == "Не выбрано" ? null : $("select#theTime")[0].value,
 
 		};
-		console.log(data.personal);
-		 $.ajax({
-			 data: data,
-			 url: "/",
-			 method: 'POST',
-			 dataType: 'json'
-			}).always(function(data) {
+		if((data.age < 0) || (data.age > 116)){
+			alert('Неправильный возраст.');
+		}
+		else
+		{
+			console.log(data.personal);
+			$.ajax({
+				data: data,
+				url: "/",
+				method: 'POST',
+				dataType: 'json'
+			}).always(function (data) {
 				$("div#anketa")[0].innerHTML = data.html;
 				$("#button_search")[0].innerHTML = '';
 				console.log('Tbi JLox');
 			});
+		}
 });
 });
